@@ -1,0 +1,61 @@
+.main {
+  position: relative;
+}
+
+.nav-bar {
+  top: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  z-index: 99;
+  position: -webkit-sticky;
+  position: sticky;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0.7rem 5rem;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+}
+
+.nav-bar__save {
+  font-weight: 700;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.nav-bar__save:hover {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar__list {
+  font-weight: 700;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.main-movies {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 70vw;
+  padding: 10px 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+/*# sourceMappingURL=main.css.map */

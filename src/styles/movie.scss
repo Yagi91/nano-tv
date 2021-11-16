@@ -1,0 +1,99 @@
+@import "./variables";
+@use "./variables";
+
+// $font-size-header: 2.5em;
+// $font-size-info-type: 1.5em;
+// $font-size-card-info: 1.4em;
+
+@mixin thin-border($side, $opacity) {
+  @if $side== "right" {
+    border-right: 1px solid;
+  } @else if $side== "bottom" {
+    border-bottom: 1px solid;
+  } @else if $side== "left" {
+    border-left: 1px solid;
+  } @else if $side== "whole" {
+    border: 1px solid;
+  }
+  border-color: rgba(0, 0, 0, $opacity);
+}
+
+.movie-card {
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  .movie-card__container-image {
+    position: relative;
+    max-width: 100%;
+    height: 300px;
+    overflow: hidden;
+    .movie__image {
+      object-position: 50% 50%;
+      width: 100%;
+      height: 100%;
+      align-self: center;
+      object-fit: cover;
+    }
+    .movie__summary {
+      position: absolute;
+      padding: 1em;
+      background-color: whitesmoke;
+      bottom: 0;
+      opacity: 0;
+      max-height: 100%;
+      left: 0;
+      right: 0;
+      transform: translateY(100%);
+      transition: all 0.3s ease-in-out;
+      font-size: $font-size-card-info;
+    }
+  }
+  .movie__info {
+    display: grid;
+    grid-template-rows: 0.5fr repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    .movie__title {
+      // font-size: $font-size-header;
+      @include thin-border(bottom, 0.3);
+      grid-area: "h";
+      grid-column: 1/4;
+    }
+  }
+}
+.movie__info {
+  display: flex;
+  flex-direction: column;
+  :first-child {
+    font-size: $font-size-card-info;
+  }
+  .movie__info-type {
+    font-size: $font-size-info-type;
+    font-weight: bold;
+  }
+  .bottom {
+    @include thin-border(bottom, 0.3);
+  }
+  .right {
+    @include thin-border(right, 0.3);
+  }
+  .movie__follow {
+    cursor: pointer;
+  }
+}
+
+.movie-card__container-image:hover {
+  .movie__summary {
+    z-index: 1;
+    opacity: 1;
+    overflow-y: auto;
+    transform: translateY(0%);
+  }
+  .movie__image {
+    z-index: -1;
+    filter: blur(2px);
+  }
+}

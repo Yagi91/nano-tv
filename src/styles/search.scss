@@ -1,0 +1,46 @@
+@import "./variables";
+
+.search {
+  margin: 0.5em 0;
+  .search-button {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 0.3em;
+    border-radius: 7px;
+  }
+  .search-bar {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 10px;
+    margin-right: 2px;
+    bottom: 1px solid;
+    padding: 0.2em 0.3em;
+  }
+}
+
+.search-bar:focus {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  outline: none;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  //   background-color: $main-bg;
+}
+.search-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: whitesmoke;
+}
+.search-button:focus {
+  outline: none;
+}
