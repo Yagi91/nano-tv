@@ -20,7 +20,7 @@ const Search = ({ submit }) => {
         type="submit"
         className="search-button"
         id="search-button"
-        onClick={(e) => submit(e)}
+        onClick={submit}
       >
         Search
       </button>

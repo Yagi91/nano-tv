@@ -10,16 +10,25 @@ const MovieCard = ({
   premiered,
   status,
   summary,
+  listing,
+  key,
+  id,
+  displayPage,
 }) => {
   const [pic, setImage] = useState("");
   useEffect(() => {
     setImage(image);
   }, [image]);
   let fontSize = title.length < 21 ? "2em" : "1.em";
-  console.log(title.length, fontSize);
+  // console.log(title.length, fontSize);
   return (
-    <div className="movie-card">
-      <div className="movie-card__container-image">
+    <div className="movie-card" key={key}>
+      <div
+        className="movie-card__container-image"
+        onClick={displayPage}
+        movieid={id}
+        moviename={title}
+      >
         <div
           className="movie__summary"
           dangerouslySetInnerHTML={{ __html: summary }}
@@ -50,7 +59,12 @@ const MovieCard = ({
           <div>{status}</div>
           <div className="movie__info-type">Status</div>
         </div>
-        <div className="movie__follow">
+        <div
+          className="movie__follow"
+          onClick={listing}
+          movieid={id}
+          moviename={title}
+        >
           <div className="movie__info-type">
             <i className="fas fa-eye"></i>
             <div>Follow</div>
