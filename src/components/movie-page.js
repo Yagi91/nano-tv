@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useFetch from "./api";
 import image from "../assets/not.PNG";
 
@@ -29,7 +29,7 @@ const MoviePage = ({
           <div>
             <img
               src={show.image ? show.image.original : image}
-              alt="shows image"
+              alt="placeholder for movie"
               className="movie__image"
             />
           </div>

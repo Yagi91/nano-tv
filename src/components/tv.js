@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+//integrates the main-page component, listing component, movie component,sort and search components.
+
+import React, { useState, useRef } from "react";
 import { DateTime } from "luxon";
 import axios from "axios";
 import MovieCard from "./movie";
@@ -10,10 +12,12 @@ import "../styles/main.css";
 import List from "./list";
 import MoviePage from "./movie-page";
 import CountrySelect from "./sidebar";
+import listing, { Submit, displayPage } from "../utility/utils";
 
 const defaultUrl = {
-  today: `https://api.tvmaze.com/schedule/web?date=2021-12-05`,
+  today: `https://api.tvmaze.com/schedule/web?date=2021-12-05`, //endpoint shows for today dynamically updated
   future: [
+    //TV maze endpoint of both the local-schedule and web-schedule
     "http://api.tvmaze.com/schedule",
     "https://api.tvmaze.com/schedule/web",
   ],
@@ -34,88 +38,89 @@ const Main = () => {
   );
   const [list, setList] = useState([]);
   const [showPage, setShowPage] = useState(false);
+  //the focus show are used to focus on a single shows the main page.
   const [focusShow, setFocusShow] = useState("");
   const [focusShowId, setFocusShowId] = useState("");
   const selectRef = useRef();
 
-  const submit = (e) => {
-    setSearched(true);
-    e.preventDefault();
-    let query = document.getElementById("search-bar").value;
-    if (query.trim().length > 0) {
-      setUrl(`https://api.tvmaze.com/search/shows?q=${query}`);
-    } else if (query.trim().length < 0) {
-      return;
-    }
-    document.getElementById("search-bar").value = "";
-  };
+  // const submit = (e) => {
+  //   setSearched(true);
+  //   e.preventDefault();
+  //   let query = document.getElementById("search-bar").value;
+  //   if (query.trim().length > 0) {
+  //     setUrl(`https://api.tvmaze.com/search/shows?q=${query}`);
+  //   } else if (query.trim().length < 0) {
+  //     return;
+  //   }
+  //   document.getElementById("search-bar").value = "";
+  // };
 
-  const listing = (e) => {
-    const showId = e.currentTarget.getAttribute("movieid");
-    const showName = e.currentTarget.getAttribute("moviename");
-    const dateString = { ...DateTime.DATETIME_SHORT };
-    let nextEp;
-    let showExistIndex;
-    function showExist(show, index, array) {
-      showExistIndex = index;
-      return show.showName === showName;
-    }
-    if (list.length > 0 && list.some(showExist)) {
-      setList((prevList) => {
-        let newList = prevList.slice();
-        newList.splice(showExistIndex, 1);
-        return newList;
-      });
-      return;
-    }
-    axios
-      .get(`https://api.tvmaze.com/shows/${showId}?embed=nextepisode`)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data._embedded) {
-          console.log("data is embedded");
-          nextEp = DateTime.fromISO(
-            res.data["_embedded"].nextepisode.airstamp
-          ).toLocaleString(dateString);
-          setList((list) => {
-            let newList = list.slice();
-            console.log(newList);
-            newList.push({
-              showName: showName,
-              nextEp: nextEp,
-              showId: showId,
-            });
-            return newList;
-          });
-          console.log("this is the list: ", list);
-        } else {
-          setList((prevState) => {
-            let newList = prevState.slice();
-            newList.push({
-              showName: showName,
-              nextEp: "No Info",
-              showId: showId,
-            });
-            return newList;
-          });
-          console.log(list);
-        }
-      })
-      .catch((err) => {
-        alert(`${showName} has error: ${err}`);
-      });
-  };
+  // const listing = (e) => {
+  //   const showId = e.currentTarget.getAttribute("movieid");
+  //   const showName = e.currentTarget.getAttribute("moviename");
+  //   const dateString = { ...DateTime.DATETIME_SHORT };
+  //   let nextEp;
+  //   let showExistIndex;
+  //   function showExist(show, index, array) {
+  //     showExistIndex = index;
+  //     return show.showName === showName;
+  //   }
+  //   if (list.length > 0 && list.some(showExist)) {
+  //     setList((prevList) => {
+  //       let newList = prevList.slice();
+  //       newList.splice(showExistIndex, 1);
+  //       return newList;
+  //     });
+  //     return;
+  //   }
+  //   axios
+  //     .get(`https://api.tvmaze.com/shows/${showId}?embed=nextepisode`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       if (res.data._embedded) {
+  //         console.log("data is embedded");
+  //         nextEp = DateTime.fromISO(
+  //           res.data["_embedded"].nextepisode.airstamp
+  //         ).toLocaleString(dateString);
+  //         setList((list) => {
+  //           let newList = list.slice();
+  //           console.log(newList);
+  //           newList.push({
+  //             showName: showName,
+  //             nextEp: nextEp,
+  //             showId: showId,
+  //           });
+  //           return newList;
+  //         });
+  //         console.log("this is the list: ", list);
+  //       } else {
+  //         setList((prevState) => {
+  //           let newList = prevState.slice();
+  //           newList.push({
+  //             showName: showName,
+  //             nextEp: "No Info",
+  //             showId: showId,
+  //           });
+  //           return newList;
+  //         });
+  //         console.log(list);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       alert(`${showName} has error: ${err}`);
+  //     });
+  // };
 
-  const displayPage = (e) => {
-    setFocusShow(e.currentTarget.getAttribute("moviename"));
-    setFocusShowId(e.currentTarget.getAttribute("movieid"));
-    setShowPage(true);
-  };
+  // const displayPage = (e) => {
+  //   setFocusShow(e.currentTarget.getAttribute("moviename"));
+  //   setFocusShowId(e.currentTarget.getAttribute("movieid"));
+  //   setShowPage(true);
+  // };
 
   return (
     <div className="main">
       <div className="nav-bar">
-        <Search submit={(e) => submit(e)} />
+        <Search submit={(e) => Submit(e, setSearched, setUrl)} />
         <div className="nav-bar__list">My List</div>
         <div className="nav-bar__save">Save List</div>
       </div>
@@ -127,7 +132,7 @@ const Main = () => {
         showName={focusShow}
         id={focusShowId}
         searched={true}
-        listing={(e) => listing(e)}
+        listing={(e) => listing(e, setList, list)}
       />
       <div className="main-movies">
         {/* {console.log("in rendering", data)} */}
@@ -157,8 +162,10 @@ const Main = () => {
                     : "No Available <strong>Summary</strong> at the Moment"
                 }
                 id={movie.show.id}
-                listing={(e) => listing(e)}
-                displayPage={(e) => displayPage(e)}
+                listing={(e) => listing(e, setList, list)}
+                displayPage={(e) =>
+                  displayPage(e, setFocusShow, setFocusShowId, setShowPage)
+                }
               />
             ) : (
               <div>
