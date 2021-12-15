@@ -10,7 +10,7 @@ const MoviePage = ({
   id,
   listing,
 }) => {
-  const [name, setName] = useState(showName);
+  // const [name, setName] = useState(showName);
   let url = `https://api.tvmaze.com/shows/${id}`;
   const [show, loaded, error] = useFetch(url, searched, [url, searched]);
 
@@ -29,7 +29,7 @@ const MoviePage = ({
           <div>
             <img
               src={show.image ? show.image.original : image}
-              alt="placeholder for movie"
+              alt="placeholder for movie" //alt value is not supposed to contain redundant info like image,picture etc
               className="movie__image"
             />
           </div>

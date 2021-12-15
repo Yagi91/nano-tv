@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/movie.css";
+//contains all main information of any movie component on the pag with it's basic information with hover effect for summary
 
 const MovieCard = ({
   title,
@@ -18,8 +19,13 @@ const MovieCard = ({
   const [pic, setImage] = useState("");
   useEffect(() => {
     setImage(image);
-  }, [image]);
+  }, [image]); //placing the default image on component mounted
   let fontSize = title.length < 21 ? "2em" : "1.em";
+  // const fontSize = (e) => {
+  //   alert(this.target.value);
+  //   let size = e.target.value.length;
+  //   return "2em";
+  // }; // ensures that the title should be able to be contained in the container
   // console.log(title.length, fontSize);
   return (
     <div className="movie-card" key={key}>

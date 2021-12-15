@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/search.css";
 
+//search of the today shows
+
 const Search = ({ submit }) => {
   return (
     <form className="search" id="search">
