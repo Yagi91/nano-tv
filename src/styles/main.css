@@ -1,11 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
 .main {
   position: relative;
+  font-size: 10px;
 }
 
 .nav-bar {
   top: 0;
   width: 100%;
-  background-color: whitesmoke;
+  background-color: #322f2f;
   z-index: 99;
   position: -webkit-sticky;
   position: sticky;
@@ -13,18 +17,42 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 0.7rem 5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.7rem 15rem;
   gap: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   font-size: 1.5em;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.nav-bar .nav-bar__logo {
+  color: #e7ff2c;
+  font-weight: 700;
+  font-size: 1.7em;
+  font-family: "Frijole", cursive;
+}
+
+.nav-bar .nav-bar__logo .fa-television {
+  -webkit-animation: flicker 1s ease-in-out infinite alternate;
+          animation: flicker 1s ease-in-out infinite alternate;
+}
+
+.nav-bar .navbar-bar__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nav-bar__save {
+  color: #ffffff;
   font-weight: 700;
   padding: 3px;
   cursor: pointer;
@@ -32,8 +60,7 @@
 }
 
 .nav-bar__save:hover {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  color: #e7ff2c;
 }
 
 .nav-bar__list {
@@ -41,6 +68,11 @@
   padding: 3px;
   cursor: pointer;
   border-radius: 5px;
+  color: #ffffff;
+}
+
+.nav-bar__list:hover {
+  color: #e7ff2c;
 }
 
 .main-movies {
@@ -57,5 +89,39 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+@-webkit-keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #e7ff2c, 0 0 80px #e7ff2c, 0 0 90px #e7ff2c, 0 0 100px #e7ff2c, 0 0 150px #e7ff2c;
+  }
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #e7ff2c, 0 0 80px #e7ff2c, 0 0 90px #e7ff2c, 0 0 100px #e7ff2c, 0 0 150px #e7ff2c;
+  }
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */

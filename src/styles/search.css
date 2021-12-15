@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
 .search {
   margin: 0.5em 0;
 }
@@ -5,9 +8,13 @@
 .search .search-button {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  border: none;
+  border: 1px solid #e7ff2c;
   padding: 0.3em;
   border-radius: 7px;
+  background-color: #322f2f;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .search .search-bar {
@@ -25,26 +32,26 @@
   margin-right: 2px;
   bottom: 1px solid;
   padding: 0.2em 0.3em;
+  border: 1px solid #e7ff2c;
 }
 
 .search-bar:focus {
   background: rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(242, 242, 245, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(242, 242, 245, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
   outline: none;
-  color: black;
+  color: #ffffff;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .search-button:hover {
   cursor: pointer;
-  background-color: black;
-  color: whitesmoke;
+  background-color: #e7ff2c;
+  color: #322f2f;
 }
 
 .search-button:focus {

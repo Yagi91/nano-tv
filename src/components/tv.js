@@ -1,8 +1,6 @@
 //integrates the main-page component, listing component, movie component,sort and search components.
 
 import React, { useState, useRef } from "react";
-import { DateTime } from "luxon";
-import axios from "axios";
 import MovieCard from "./movie";
 import useFetch from "./api";
 import { useFuture } from "./api";
@@ -43,86 +41,28 @@ const Main = () => {
   const [focusShowId, setFocusShowId] = useState("");
   const selectRef = useRef();
 
-  // const submit = (e) => {
-  //   setSearched(true);
-  //   e.preventDefault();
-  //   let query = document.getElementById("search-bar").value;
-  //   if (query.trim().length > 0) {
-  //     setUrl(`https://api.tvmaze.com/search/shows?q=${query}`);
-  //   } else if (query.trim().length < 0) {
-  //     return;
-  //   }
-  //   document.getElementById("search-bar").value = "";
-  // };
-
-  // const listing = (e) => {
-  //   const showId = e.currentTarget.getAttribute("movieid");
-  //   const showName = e.currentTarget.getAttribute("moviename");
-  //   const dateString = { ...DateTime.DATETIME_SHORT };
-  //   let nextEp;
-  //   let showExistIndex;
-  //   function showExist(show, index, array) {
-  //     showExistIndex = index;
-  //     return show.showName === showName;
-  //   }
-  //   if (list.length > 0 && list.some(showExist)) {
-  //     setList((prevList) => {
-  //       let newList = prevList.slice();
-  //       newList.splice(showExistIndex, 1);
-  //       return newList;
-  //     });
-  //     return;
-  //   }
-  //   axios
-  //     .get(`https://api.tvmaze.com/shows/${showId}?embed=nextepisode`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       if (res.data._embedded) {
-  //         console.log("data is embedded");
-  //         nextEp = DateTime.fromISO(
-  //           res.data["_embedded"].nextepisode.airstamp
-  //         ).toLocaleString(dateString);
-  //         setList((list) => {
-  //           let newList = list.slice();
-  //           console.log(newList);
-  //           newList.push({
-  //             showName: showName,
-  //             nextEp: nextEp,
-  //             showId: showId,
-  //           });
-  //           return newList;
-  //         });
-  //         console.log("this is the list: ", list);
-  //       } else {
-  //         setList((prevState) => {
-  //           let newList = prevState.slice();
-  //           newList.push({
-  //             showName: showName,
-  //             nextEp: "No Info",
-  //             showId: showId,
-  //           });
-  //           return newList;
-  //         });
-  //         console.log(list);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       alert(`${showName} has error: ${err}`);
-  //     });
-  // };
-
-  // const displayPage = (e) => {
-  //   setFocusShow(e.currentTarget.getAttribute("moviename"));
-  //   setFocusShowId(e.currentTarget.getAttribute("movieid"));
-  //   setShowPage(true);
-  // };
-
   return (
     <div className="main">
       <div className="nav-bar">
-        <Search submit={(e) => Submit(e, setSearched, setUrl)} />
-        <div className="nav-bar__list">My List</div>
-        <div className="nav-bar__save">Save List</div>
+        <div className="nav-bar__logo">
+          Nano
+          <br />
+          TV <i class="fas fa-television" style={{ color: "#fff" }}></i>
+        </div>
+        <div className="navbar-bar__content">
+          <Search submit={(e) => Submit(e, setSearched, setUrl)} />
+          <div className="nav-bar__list">
+            Following{" "}
+            <i class="fas fa-clipboard-list" style={{ color: "#e7ff2c" }}></i>
+          </div>
+          <div className="nav-bar__save">
+            Save List{" "}
+            <i
+              class="fas fa-cloud-download-alt"
+              style={{ color: "#e7ff2c" }}
+            ></i>
+          </div>
+        </div>
       </div>
       <h1>Web/streaming schedule Airing Today</h1>
       <List showList={list} showName={"showName"} nextEp={"nextEp"} />
@@ -135,7 +75,6 @@ const Main = () => {
         listing={(e) => listing(e, setList, list)}
       />
       <div className="main-movies">
-        {/* {console.log("in rendering", data)} */}
         {data.length === 0 || error != null || !loaded ? (
           <div>
             No Result Found: <strong>{error}</strong>

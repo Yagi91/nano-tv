@@ -11,6 +11,7 @@ const CountrySelect = ({ selectRef, setFutureUrl }) => {
   const sort = (e) => {
     e.preventDefault();
     if (country.length === 0) {
+      //restores the future movie the recently premiered movie to default
       setFutureUrl([
         "http://api.tvmaze.com/schedule",
         "https://api.tvmaze.com/schedule/web",
