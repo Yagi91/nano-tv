@@ -28,7 +28,11 @@ const MovieCard = ({
   // }; // ensures that the title should be able to be contained in the container
   // console.log(title.length, fontSize);
   return (
-    <div className="movie-card" key={key}>
+    <div
+      className="movie-card"
+      key={key}
+      style={{ display: "inline", float: "none" }}
+    >
       <div
         className="movie-card__container-image"
         onClick={displayPage}

@@ -79,4 +79,8 @@ export const displayPage = (e, setFocusShow, setFocusShowId, setShowPage) => {
   setShowPage(true); //the page can be visible now
 };
 
+export const handleList = (setDisplayList) => {
+  setDisplayList((state) => !state);
+};
+
 export default listing;

@@ -11,7 +11,6 @@
   background-color: $main-bg;
   z-index: 99;
   position: sticky;
-  border: 1px solid;
   display: flex;
   justify-content: space-between;
   padding: 0.7rem 15rem;
@@ -19,11 +18,15 @@
   align-items: center;
   font-size: $font-size-info-type;
   font-family: $primary-font;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
   .nav-bar__logo {
+    transition: all 0.3s;
     color: $secondary-color;
     font-weight: 700;
     font-size: 1.7em;
     font-family: $logo-font;
+    cursor: pointer;
     .fa-television {
       animation: flicker 1s ease-in-out infinite alternate;
     }
@@ -56,17 +59,26 @@
 }
 
 .main-movies {
-  border: 1px solid black;
-  margin: 0 auto;
-  width: 70vw;
-  padding: 10px 50px;
-  //   margin-top: 5px;
+  justify-self: center;
+  border: 1px solid white;
+  width: 80vw;
+  margin: 2em auto;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
+  // justify-content: stretch;
 }
 
+.shrink {
+  transition: all 0.3s;
+  padding: 0.5rem 15rem;
+  .nav-bar__logo {
+    font-size: 1.3em;
+  }
+}
+
+//flickering animation
 @keyframes flicker {
   0%,
   18%,

@@ -16,6 +16,8 @@
           flex-direction: column;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font-family: "Bai Jamjuree", sans-serif;
 }
 
 .movie-card .movie-card__container-image {
@@ -41,6 +43,7 @@
   position: absolute;
   padding: 1em;
   background-color: whitesmoke;
+  color: #322f2f;
   bottom: 0;
   opacity: 0;
   max-height: 100%;

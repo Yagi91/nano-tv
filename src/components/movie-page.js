@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useFetch from "./api";
 import image from "../assets/not.PNG";
+import "../styles/moviepage.css";
 
 const MoviePage = ({
   showPage,
@@ -19,7 +20,7 @@ const MoviePage = ({
   };
 
   return showPage ? (
-    <div>
+    <div className="movie-page">
       <h1>{showName}</h1>
       <button onClick={closePage}>
         <i class="fa fa-times"></i>

@@ -1,6 +1,6 @@
 //integrates the main-page component, listing component, movie component,sort and search components.
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import MovieCard from "./movie";
 import useFetch from "./api";
 import { useFuture } from "./api";
@@ -10,7 +10,7 @@ import "../styles/main.css";
 import List from "./list";
 import MoviePage from "./movie-page";
 import CountrySelect from "./sidebar";
-import listing, { Submit, displayPage } from "../utility/utils";
+import listing, { Submit, displayPage, handleList } from "../utility/utils";
 
 const defaultUrl = {
   today: `https://api.tvmaze.com/schedule/web?date=2021-12-05`, //endpoint shows for today dynamically updated
@@ -40,18 +40,46 @@ const Main = () => {
   const [focusShow, setFocusShow] = useState("");
   const [focusShowId, setFocusShowId] = useState("");
   const selectRef = useRef();
+  const [shrink, setShrink] = useState(false);
+  const [displayList, setDisplayList] = useState(false);
+
+  //control the header shrinking animation
+  useEffect(() => {
+    const resizeHeaderOnScroll = () => {
+      const distanceY =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const shrinkOn = 200;
+      if (distanceY > shrinkOn) {
+        setShrink(true);
+      } else {
+        setShrink(false);
+      }
+    };
+    window.addEventListener("scroll", resizeHeaderOnScroll);
+    return () => window.removeEventListener("scroll", resizeHeaderOnScroll);
+    // window.onscroll = () => {
+    //   if (window.pageYOffset > 40) {
+    //     setShrink(true);
+    //   } else {
+    //     setShrink(false);
+    //   }
+    // };
+  }, []);
 
   return (
     <div className="main">
-      <div className="nav-bar">
-        <div className="nav-bar__logo">
+      <div className={`nav-bar ${shrink ? "shrink" : ""}`}>
+        <div className="nav-bar__logo" to="/">
           Nano
           <br />
           TV <i class="fas fa-television" style={{ color: "#fff" }}></i>
         </div>
         <div className="navbar-bar__content">
           <Search submit={(e) => Submit(e, setSearched, setUrl)} />
-          <div className="nav-bar__list">
+          <div
+            className="nav-bar__list"
+            onClick={() => handleList(setDisplayList)}
+          >
             Following{" "}
             <i class="fas fa-clipboard-list" style={{ color: "#e7ff2c" }}></i>
           </div>
@@ -65,7 +93,13 @@ const Main = () => {
         </div>
       </div>
       <h1>Web/streaming schedule Airing Today</h1>
-      <List showList={list} showName={"showName"} nextEp={"nextEp"} />
+      <List
+        showList={list}
+        showName={"showName"}
+        nextEp={"nextEp"}
+        displayList={displayList}
+        setDisplayList={setDisplayList}
+      />
       <MoviePage
         showPage={showPage}
         setShowPage={setShowPage}
@@ -87,14 +121,14 @@ const Main = () => {
                 image={movie.show.image ? movie.show.image.original : image}
                 // image={movie.show.image.medium}
                 rating={
-                  movie.show.rating.average ? movie.show.rating.average : "N/A"
+                  movie.show.rating.average ? movie.show.rating.average : "--"
                 }
                 country={
-                  movie.show.network ? movie.show.network.country.code : "N/A"
+                  movie.show.network ? movie.show.network.country.code : "--"
                 }
-                network={movie.show.network ? movie.show.network.name : "N/A"}
-                premiered={movie.show.premiered ? movie.show.premiered : "N/A"}
-                status={movie.show.status ? movie.show.status : "N/A"}
+                network={movie.show.network ? movie.show.network.name : "--"}
+                premiered={movie.show.premiered ? movie.show.premiered : "--"}
+                status={movie.show.status ? movie.show.status : "--"}
                 summary={
                   movie.show.summary
                     ? movie.show.summary
@@ -133,14 +167,14 @@ const Main = () => {
                 image={movie.show.image ? movie.show.image.original : image}
                 // image={movie.show.image.medium}
                 rating={
-                  movie.show.rating.average ? movie.show.rating.average : "N/A"
+                  movie.show.rating.average ? movie.show.rating.average : "--"
                 }
                 country={
-                  movie.show.network ? movie.show.network.country.code : "N/A"
+                  movie.show.network ? movie.show.network.country.code : "--"
                 }
-                network={movie.show.network ? movie.show.network.name : "N/A"}
-                premiered={movie.show.premiered ? movie.show.premiered : "N/A"}
-                status={movie.show.status ? movie.show.status : "N/A"}
+                network={movie.show.network ? movie.show.network.name : "--"}
+                premiered={movie.show.premiered ? movie.show.premiered : "--"}
+                status={movie.show.status ? movie.show.status : "--"}
                 summary={
                   movie.show.summary
                     ? movie.show.summary

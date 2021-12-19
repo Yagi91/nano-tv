@@ -26,6 +26,8 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  color: $primary-color;
+  font-family: $primary-font;
   .movie-card__container-image {
     position: relative;
     max-width: 100%;
@@ -42,6 +44,7 @@
       position: absolute;
       padding: 1em;
       background-color: whitesmoke;
+      color: $main-bg;
       bottom: 0;
       opacity: 0;
       max-height: 100%;

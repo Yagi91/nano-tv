@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,OAAO,CAAC,sEAAI;AACZ,OAAO,CAAC,yKAAI;AACZ,OAAO,CAAC,8FAAI",
+    "sources": [
+        "moviepage.scss",
+        "_variables.scss"
+    ],
+    "names": [],
+    "file": "moviepage.css"
+}

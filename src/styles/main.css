@@ -13,7 +13,6 @@
   z-index: 99;
   position: -webkit-sticky;
   position: sticky;
-  border: 1px solid;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,13 +26,19 @@
           align-items: center;
   font-size: 1.5em;
   font-family: "Bai Jamjuree", sans-serif;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-bar .nav-bar__logo {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   color: #e7ff2c;
   font-weight: 700;
   font-size: 1.7em;
   font-family: "Frijole", cursive;
+  cursor: pointer;
 }
 
 .nav-bar .nav-bar__logo .fa-television {
@@ -76,19 +81,29 @@
 }
 
 .main-movies {
-  border: 1px solid black;
-  margin: 0 auto;
-  width: 70vw;
-  padding: 10px 50px;
+  justify-self: center;
+  border: 1px solid white;
+  width: 80vw;
+  margin: 2em auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.shrink {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 0.5rem 15rem;
+}
+
+.shrink .nav-bar__logo {
+  font-size: 1.3em;
 }
 
 @-webkit-keyframes flicker {
