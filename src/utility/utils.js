@@ -7,12 +7,19 @@ const listing = (e, setList, list) => {
   const dateString = { ...DateTime.DATETIME_SHORT }; //returns shorter date-time with slashes to easily fit in same line with the movie title
   let nextEp;
   let showExistIndex;
+  var all = document.getElementsByClassName(showName);
+  console.log(all);
   //ensure that clicking on the follow button twice removes that show from the list
+
   function showExist(show, index, array) {
     showExistIndex = index;
     return show.showName === showName;
   }
   if (list.length > 0 && list.some(showExist)) {
+    for (let i = 0; i < all.length; i++) {
+      all[i].style.color = "white";
+    }
+    // e.currentTarget.style.color = "white";
     setList((prevList) => {
       let newList = prevList.slice(); //avoid mutating state in itself
       newList.splice(showExistIndex, 1);
@@ -20,6 +27,11 @@ const listing = (e, setList, list) => {
     });
     return;
   }
+  for (let i = 0; i < all.length; i++) {
+    all[i].style.color = "#e7ff2c";
+  }
+  // e.currentTarget.style.color = "#e7ff2c";
+
   axios
     .get(`https://api.tvmaze.com/shows/${showId}?embed=nextepisode`)
     .then((res) => {

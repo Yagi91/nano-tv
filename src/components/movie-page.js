@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useFetch from "./api";
 import image from "../assets/not.PNG";
 import "../styles/moviepage.css";
@@ -20,51 +20,145 @@ const MoviePage = ({
   };
 
   return showPage ? (
-    <div className="movie-page">
-      <h1>{showName}</h1>
-      <button onClick={closePage}>
-        <i class="fa fa-times"></i>
-      </button>
-      {loaded ? (
-        <>
-          <div>
-            <img
-              src={show.image ? show.image.original : image}
-              alt="placeholder for movie" //alt value is not supposed to contain redundant info like image,picture etc
-              className="movie__image"
-            />
+    <div className="overlay">
+      <div className="movie-page">
+        <div className="movie-page__container">
+          <div className="movie-page__image-container">
+            {loaded ? (
+              <img
+                src={show.image ? show.image.original : image}
+                alt="placeholder for movie" //alt value is not supposed to contain redundant info like image,picture etc
+                className="movie__image"
+              />
+            ) : null}
           </div>
-          <div>
-            <ul>
-              {show.genres.map((genre) => (
-                <li key={genre} class="genres">
-                  /{genre}
-                </li>
-              ))}
-            </ul>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: show.summary ? show.summary : "Not Available",
-              }}
-            ></div>
-            <div>
-              <a href={show.OfficialSite}>Official Site</a>
+          <div className="movie-page__content">
+            <div onClick={closePage} className="movie-page-close">
+              <i class="fa fa-times"></i>
             </div>
-            <div>
-              <i class="fas fa-star"></i>
-              {show.rating.average ? show.rating.average : "N/A"}
-            </div>
-            <div>{show.language}</div>
+            <h1 className="movie-title">{showName}</h1>
+            {loaded ? (
+              <>
+                <div className="movie-page__lang">{show.language}</div>
+                <div className="movie-page__genre">
+                  <ul>
+                    {show.genres.map((genre) => (
+                      <li key={genre} className="genres">
+                        {genre} /
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="movie-page__rating">
+                  {show.rating.average ? show.rating.average : "N/A"}{" "}
+                  <i class="fas fa-star"></i>
+                </div>
+                <hr />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: show.summary ? show.summary : "Not Available",
+                  }}
+                  className="movie-page__summary"
+                ></div>
+
+                <div className="movie-page__buttons">
+                  <div className="movie-page__site">
+                    <a
+                      href={show.officialSite}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button>
+                        <i
+                          class="fa fa-globe"
+                          aria-hidden="true"
+                          style={{ paddingRight: "15px" }}
+                        ></i>
+                        Official Site
+                      </button>
+                    </a>
+                  </div>
+                  <button
+                    movieid={id}
+                    moviename={showName}
+                    onClick={listing}
+                    className="movie-page__follow"
+                  >
+                    <i
+                      class="fas fa-clipboard-list"
+                      style={{ paddingRight: "15px" }}
+                    ></i>
+                    Follow
+                  </button>
+                </div>
+              </>
+            ) : (
+              `Loading...`
+            )}
           </div>
-          <button movieid={id} moviename={showName} onClick={listing}>
-            Follow
-          </button>
-        </>
-      ) : (
-        `Loading...`
-      )}
+        </div>
+      </div>
     </div>
   ) : null;
 };
 
 export default MoviePage;
+
+// return showPage ? (
+//   <div className="movie-page">
+//     <div className="movie-page__container">
+//       <h1 className="movie-title">{showName}</h1>
+//       <button onClick={closePage} className="movie-page-close">
+//         <i class="fa fa-times"></i>
+//       </button>
+//       {loaded ? (
+//         <>
+//           <div className="movie-page__image-container">
+//             <img
+//               src={show.image ? show.image.original : image}
+//               alt="placeholder for movie" //alt value is not supposed to contain redundant info like image,picture etc
+//               className="movie__image"
+//             />
+//           </div>
+//           <div className="movie-page__genre">
+//             <ul>
+//               {show.genres.map((genre) => (
+//                 <li key={genre} className="genres">
+//                   /{genre}
+//                 </li>
+//               ))}
+//             </ul>
+//             <div
+//               dangerouslySetInnerHTML={{
+//                 __html: show.summary ? show.summary : "Not Available",
+//               }}
+//               className="movie-page__summary"
+//             ></div>
+//             <div className="movie-page__site">
+//               <a href={show.officialSite} target="_blank">
+//                 <button>Official Site</button>
+//               </a>
+//             </div>
+//             <div className="movie-page__rating">
+//               <i class="fas fa-star"></i>
+//               {show.rating.average ? show.rating.average : "N/A"}
+//             </div>
+//             <div className="movie-page__lang">{show.language}</div>
+//           </div>
+//           <button
+//             movieid={id}
+//             moviename={showName}
+//             onClick={listing}
+//             className="movie-page__follow"
+//           >
+//             Follow
+//           </button>
+//         </>
+//       ) : (
+//         `Loading...`
+//       )}
+//     </div>
+//   </div>
+// ) : null;
+// };

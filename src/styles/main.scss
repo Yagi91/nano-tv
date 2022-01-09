@@ -67,7 +67,14 @@
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  // justify-content: stretch;
+}
+
+.premiered-movies {
+  // justify-self: center;
+  // border: 1px solid red;
+  width: 80vw;
+  // margin: 2em auto;
+  // justify-content: center;
 }
 
 .shrink {

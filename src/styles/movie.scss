@@ -1,22 +1,6 @@
 @import "./variables";
 @use "./variables";
-
-// $font-size-header: 2.5em;
-// $font-size-info-type: 1.5em;
-// $font-size-card-info: 1.4em;
-
-@mixin thin-border($side, $opacity) {
-  @if $side== "right" {
-    border-right: 1px solid;
-  } @else if $side== "bottom" {
-    border-bottom: 1px solid;
-  } @else if $side== "left" {
-    border-left: 1px solid;
-  } @else if $side== "whole" {
-    border: 1px solid;
-  }
-  border-color: rgba(0, 0, 0, $opacity);
-}
+@import "./mixins";
 
 .movie-card {
   position: relative;
@@ -43,7 +27,7 @@
     .movie__summary {
       position: absolute;
       padding: 1em;
-      background-color: whitesmoke;
+      background-color: $primary-color;
       color: $main-bg;
       bottom: 0;
       opacity: 0;
@@ -60,7 +44,6 @@
     grid-template-rows: 0.5fr repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
     .movie__title {
-      // font-size: $font-size-header;
       @include thin-border(bottom, 0.3);
       grid-area: "h";
       grid-column: 1/4;

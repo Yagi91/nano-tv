@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
 @use "./variables";
 .movie-card {
   position: relative;
@@ -42,7 +45,7 @@
 .movie-card .movie-card__container-image .movie__summary {
   position: absolute;
   padding: 1em;
-  background-color: whitesmoke;
+  background-color: #ffffff;
   color: #322f2f;
   bottom: 0;
   opacity: 0;

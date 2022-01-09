@@ -70,7 +70,7 @@ const MovieCard = ({
           <div className="movie__info-type">Status</div>
         </div>
         <div
-          className="movie__follow"
+          className={`movie__follow ${title}`}
           onClick={listing}
           movieid={id}
           moviename={title}
@@ -84,5 +84,7 @@ const MovieCard = ({
     </div>
   );
 };
+
+// style={{ color: `${list.some(movie=>{Object.values(movie).includes(title)})}` }}
 
 export default MovieCard;

@@ -1,4 +1,117 @@
 @import "./variables";
+@import "./mixins";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  background-color: rgba(128, 128, 128, 0.5);
+  z-index: 98;
+}
 
 .movie-page {
+  position: fixed;
+  font-size: 14px;
+  text-align: left;
+  font-family: $primary-font;
+  color: $primary-color;
+  z-index: 98;
+  width: fit-content;
+  height: fit-content;
+  transform: translate(-50%, -50%);
+  left: calc(50vw - 450px);
+  top: 20vh;
+}
+.movie-page__container {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 350px 550px;
+  grid-template-rows: 1fr;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: $main-bg;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.movie-page__image-container {
+  width: 350px;
+  height: 100%;
+  background-color: $secondary-color;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  overflow: hidden;
+  .movie__image {
+    height: auto;
+    width: 100%;
+    filter: opacity(0.7);
+  }
+}
+.movie-page__content {
+  padding: 15px;
+}
+
+.movie-title {
+  text-align: left;
+  font-family: $primary-font;
+  padding: 10px 0;
+}
+
+.movie-page__genre {
+  padding: 10px 0;
+  ul {
+    text-align: left;
+    list-style: none;
+    display: flex;
+    flex-direction: right;
+  }
+}
+.movie-page__rating {
+  color: $secondary-color;
+  padding: 10px 0;
+}
+.movie-page__lang {
+  padding: 10px 0;
+}
+.movie-page__summary {
+  text-align: left;
+  padding: 10px 0;
+  height: 30%;
+  max-height: 31%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+}
+.movie-page__buttons {
+  display: flex;
+  flex-direction: right;
+  margin: 8%;
+  justify-content: space-around;
+  .movie-page__site {
+    cursor: pointer;
+    button {
+      @include button(primary, 22px, none, none);
+    }
+  }
+
+  .movie-page__follow {
+    @include button(primary, 22px, none, none);
+  }
+}
+.movie-page-close {
+  transform: none !important;
+  @include button(close, 18px, $primary-color, $secondary-color);
 }

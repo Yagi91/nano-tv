@@ -66,6 +66,12 @@ const Main = () => {
     // };
   }, []);
 
+  //movie page modal disable background-scrolling when active(true)
+  // useEffect(() => {
+  //   const body = document.querySelector("body");
+  //   body.style.overflow = showPage ? "hidden" : "auto";
+  // }, [showPage]);
+
   return (
     <div className="main">
       <div className={`nav-bar ${shrink ? "shrink" : ""}`}>

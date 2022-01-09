@@ -96,6 +96,10 @@
           justify-content: center;
 }
 
+.premiered-movies {
+  width: 80vw;
+}
+
 .shrink {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
