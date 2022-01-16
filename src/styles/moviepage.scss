@@ -112,6 +112,8 @@
   }
 }
 .movie-page-close {
-  transform: none !important;
-  @include button(close, 18px, $primary-color, $secondary-color);
+  text-align: right;
+  i {
+    @include button(close, 20px, $primary-color, $secondary-color);
+  }
 }

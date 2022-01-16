@@ -1,0 +1,50 @@
+@import "./variables";
+@import "./mixins";
+
+.sidebar {
+  font-family: $primary-font;
+  color: $primary-color;
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 80px 5px 5px;
+  gap: 5px;
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.4), 0 6px 2px 0 rgba(0, 0, 0, 0.2);
+  .sidebar__form {
+    font-family: $primary-font;
+    color: $primary-color;
+  }
+  button {
+    @include button(primary, 17px, none, none);
+    color: $primary-color;
+    width: fit-content;
+    display: inline-block;
+    padding: 10px;
+    line-height: 5px;
+    // display: inline;
+    margin: 0 5px;
+    border-radius: 7px;
+    // float: right;
+  }
+}
+.sidebar__form-country-select {
+  font-size: 17px;
+  border-radius: 5px;
+  background-color: $main-bg;
+  color: $primary-color;
+  border-color: $secondary-color;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 7px -8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  option {
+    font-size: 17px;
+    background-color: $main-bg;
+    color: $primary-color;
+  }
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+  }
+  &:hover {
+    border-color: $primary-color;
+  }
+}

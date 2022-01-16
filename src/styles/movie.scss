@@ -3,25 +3,26 @@
 @import "./mixins";
 
 .movie-card {
+  transition: all 0.3s;
   position: relative;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  // min-width: 300px;
   width: 300px;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  // flex-direction: column;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   color: $primary-color;
   font-family: $primary-font;
   .movie-card__container-image {
-    position: relative;
+    position: relative; //ensures the text summary is within the container
     max-width: 100%;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
     .movie__image {
       object-position: 50% 50%;
       width: 100%;
       height: 100%;
-      align-self: center;
       object-fit: cover;
     }
     .movie__summary {
@@ -35,7 +36,7 @@
       left: 0;
       right: 0;
       transform: translateY(100%);
-      transition: all 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
       font-size: $font-size-card-info;
     }
   }
@@ -45,14 +46,11 @@
     grid-template-columns: repeat(3, 1fr);
     .movie__title {
       @include thin-border(bottom, 0.3);
-      grid-area: "h";
       grid-column: 1/4;
     }
   }
 }
 .movie__info {
-  display: flex;
-  flex-direction: column;
   :first-child {
     font-size: $font-size-card-info;
   }
@@ -81,5 +79,23 @@
   .movie__image {
     z-index: -1;
     filter: blur(2px);
+  }
+}
+
+.movie__summary {
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: $primary-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $main-bg;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
 }

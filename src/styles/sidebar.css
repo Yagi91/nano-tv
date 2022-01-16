@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
+.sidebar {
+  font-family: "Bai Jamjuree", sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 5px 80px 5px 5px;
+  gap: 5px;
+  -webkit-box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.4), 0 6px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.4), 0 6px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .sidebar__form {
+  font-family: "Bai Jamjuree", sans-serif;
+  color: #ffffff;
+}
+
+.sidebar button {
+  font-size: 17px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+  line-height: 1.8rem;
+  display: block;
+  border: 2px solid #e7ff2c;
+  width: 165px;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #e7ff2c), color-stop(50%, #322f2f));
+  background-image: linear-gradient(to right, #e7ff2c 50%, #322f2f 50%);
+  color: #e7ff2c;
+  text-align: center;
+  background-position: 100% 0%;
+  background-size: 200% 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: #ffffff;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  padding: 10px;
+  line-height: 5px;
+  margin: 0 5px;
+  border-radius: 7px;
+}
+
+.sidebar button:hover {
+  background-position: 0% 100%;
+  color: #322f2f;
+}
+
+.sidebar button:focus {
+  outline: none;
+}
+
+.sidebar__form-country-select {
+  font-size: 17px;
+  border-radius: 5px;
+  background-color: #322f2f;
+  color: #ffffff;
+  border-color: #e7ff2c;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 7px -8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 7px -8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sidebar__form-country-select option {
+  font-size: 17px;
+  background-color: #322f2f;
+  color: #ffffff;
+}
+
+.sidebar__form-country-select:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+
+.sidebar__form-country-select:hover {
+  border-color: #ffffff;
+}
+/*# sourceMappingURL=sidebar.css.map */

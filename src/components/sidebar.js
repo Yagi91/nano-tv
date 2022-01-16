@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/sidebar.css";
 
 const CountrySelect = ({ selectRef, setFutureUrl }) => {
   //each country with its's ISO CODE note GB for great britain.
@@ -25,10 +26,11 @@ const CountrySelect = ({ selectRef, setFutureUrl }) => {
   };
 
   return (
-    <div>
-      <form>
+    <div className="sidebar">
+      <form class="sidebar__form">
         <label for="country-select">Select Country: </label>
         <select
+          className="sidebar__form-country-select"
           id="country-select"
           ref={selectRef}
           value={country}
@@ -286,7 +288,7 @@ const CountrySelect = ({ selectRef, setFutureUrl }) => {
           <option value="ZM">Zambia</option>
           <option value="ZW">Zimbabwe</option>
         </select>
-        <button onClick={(e) => sort(e)}>Ok</button>
+        <button onClick={(e) => sort(e)}>Select</button>
       </form>
     </div>
   );

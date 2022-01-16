@@ -6,17 +6,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Frijole&family=Nosifer&family=Rye&display=swap");
 @use "./variables";
 .movie-card {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   position: relative;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   width: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: block;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   color: #ffffff;
@@ -26,7 +22,7 @@
 .movie-card .movie-card__container-image {
   position: relative;
   max-width: 100%;
-  height: 300px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -35,9 +31,6 @@
      object-position: 50% 50%;
   width: 100%;
   height: 100%;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -54,8 +47,10 @@
   right: 0;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
   font-size: 1.4em;
 }
 
@@ -71,20 +66,9 @@
 .movie-card .movie__info .movie__title {
   border-bottom: 1px solid;
   border-color: rgba(0, 0, 0, 0.3);
-  grid-area: "h";
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1/4;
-}
-
-.movie__info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .movie__info :first-child {
@@ -122,5 +106,21 @@
   z-index: -1;
   -webkit-filter: blur(2px);
           filter: blur(2px);
+}
+
+.movie__summary::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+.movie__summary::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.movie__summary::-webkit-scrollbar-thumb {
+  background-color: #322f2f;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 /*# sourceMappingURL=movie.css.map */

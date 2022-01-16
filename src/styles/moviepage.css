@@ -198,9 +198,11 @@
 }
 
 .movie-page-close {
-  -webkit-transform: none !important;
-          transform: none !important;
-  font-size: 18px;
+  text-align: right;
+}
+
+.movie-page-close i {
+  font-size: 20px;
   text-align: right;
   cursor: pointer;
   border: none;
@@ -208,13 +210,13 @@
   color: #ffffff;
 }
 
-.movie-page-close:hover {
+.movie-page-close i:hover {
   -webkit-transform: rotate(25deg) scale(1.3);
           transform: rotate(25deg) scale(1.3);
   color: red;
 }
 
-.movie-page-close:focus {
+.movie-page-close i:focus {
   outline: none;
   -webkit-transform: rotate(60deg) scale(1.3);
           transform: rotate(60deg) scale(1.3);

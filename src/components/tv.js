@@ -71,6 +71,17 @@ const Main = () => {
   //   const body = document.querySelector("body");
   //   body.style.overflow = showPage ? "hidden" : "auto";
   // }, [showPage]);
+  // let style = {
+  //   premieredMovies: {
+  //     width: "fit-content",
+  //   },
+  // };
+
+  // let subStyle = {
+  //   width: null,
+  //   float: "left",
+  //   overflow: "hidden",
+  // };
 
   return (
     <div className="main">
@@ -98,7 +109,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <h1>Web/streaming schedule Airing Today</h1>
+      <h1 className="section-title">Web/streaming schedule Airing Today</h1>
       <List
         showList={list}
         showName={"showName"}
@@ -156,18 +167,18 @@ const Main = () => {
           )
         )}
       </div>
-      <h1>Recently Premiered</h1>
-      <div>
+      <div className="premiered-header">
+        <h1 className="section-title">Recently Premiered</h1>
         <CountrySelect setFutureUrl={setFutureUrl} selectRef={selectRef} />
       </div>
-      <div className="main-movies">
+      <div className="premiered-movies">
         {data.length === 0 || error != null || !futureLoaded ? (
           <div>
             No Result Found: <strong>{futureError}</strong>
           </div>
         ) : (
-          future.map((movie, index) =>
-            movie.show.name ? (
+          future.map((movie, index, array) => {
+            return movie.show.name ? (
               <MovieCard
                 title={movie.show.name}
                 image={movie.show.image ? movie.show.image.original : image}
@@ -187,6 +198,8 @@ const Main = () => {
                     : "No Available <strong>Summary</strong> at the Moment"
                 }
                 key={movie.show.name + index}
+                // style={subStyle}
+                // style={{ width: "4vw", float: "left", overflow: "hidden" }}
               />
             ) : (
               <div>
@@ -194,8 +207,8 @@ const Main = () => {
                 <p>What your looking for is not available</p>
                 <hr />
               </div>
-            )
-          )
+            );
+          })
         )}
       </div>
     </div>
