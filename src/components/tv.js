@@ -71,17 +71,6 @@ const Main = () => {
   //   const body = document.querySelector("body");
   //   body.style.overflow = showPage ? "hidden" : "auto";
   // }, [showPage]);
-  // let style = {
-  //   premieredMovies: {
-  //     width: "fit-content",
-  //   },
-  // };
-
-  // let subStyle = {
-  //   width: null,
-  //   float: "left",
-  //   overflow: "hidden",
-  // };
 
   return (
     <div className="main">
@@ -116,6 +105,7 @@ const Main = () => {
         nextEp={"nextEp"}
         displayList={displayList}
         setDisplayList={setDisplayList}
+        datedShows={list.filter((entry) => entry.nextEp !== "No Info")}
       />
       <MoviePage
         showPage={showPage}

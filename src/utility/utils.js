@@ -8,7 +8,6 @@ const listing = (e, setList, list) => {
   let nextEp;
   let showExistIndex;
   var all = document.getElementsByClassName(showName);
-  console.log(all);
   //ensure that clicking on the follow button twice removes that show from the list
 
   function showExist(show, index, array) {
@@ -48,10 +47,11 @@ const listing = (e, setList, list) => {
             showName: showName,
             nextEp: nextEp,
             showId: showId,
+            timeStamp: res.data["_embedded"].nextepisode.airstamp,
           });
           return newList;
         });
-        console.log("this is the list: ", list);
+        console.log("this is the list:h ", list);
       } else {
         setList((prevState) => {
           let newList = prevState.slice();
