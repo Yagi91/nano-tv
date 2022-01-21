@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/list.css";
 import { handleList } from "../utility/utils";
 import { DateTime } from "luxon";
+import { listHandlers } from "../utility/utils";
+// import { download, empty } from "../utility/utils";
 
 const List = ({
   showList,
+  setShowList,
   showName,
   nextEp,
   displayList,
   setDisplayList,
   datedShows,
 }) => {
-  console.log("this is event shows", datedShows);
+  const myRef = useRef([]);
+  console.log(myRef);
+  useEffect(() => {
+    if (showList.length > 0) {
+      myRef.current[0].style.cursor = "pointer";
+      myRef.current[3].style.cursor = "pointer";
+      myRef.current[2].style.cursor = "pointer";
+    }
+    if (datedShows.length > 0) {
+      myRef.current[1].style.cursor = "pointer";
+    }
+  }, [[showList]]);
+
   var gapi = window.gapi;
   //create google cloud project and get the API key and Client ID from the google console and enable the calendar API
   var API_KEY = "AIzaSyBX_Lz02U3RIxHLNhkDA80lDk2xehAof1I";
@@ -27,9 +42,8 @@ const List = ({
 
   //Google Calendar API
   //
-  console.log("this is show list", showList);
   const syncEvents = () => {
-    if (datedShows.length < 0) {
+    if (!datedShows.length > 0 || !showList.length < 0) {
       return;
     }
     gapi.load("client:auth2", () => {
@@ -72,8 +86,6 @@ const List = ({
               },
             };
           });
-          console.log("this are event", events);
-
           var batch = gapi.client.newBatch();
 
           events.map((r, j) => {
@@ -120,33 +132,81 @@ const List = ({
         </button>
       </div>
       <div className="list__title">Show Name//Date of Next Episode</div>
-      {showList.length > 0 ? (
-        <div className="list">
-          {showList.map((show, index) => (
-            <div key={show.showId + `${index}`} className="list__item">
-              <span className="list__item-name">
-                <strong>{show[showName]}</strong>
-              </span>{" "}
-              <span className="list__item-date"> {show[nextEp]} </span>
-            </div>
-          ))}
-        </div>
-      ) : null}
-      <button className="watch-list-clear" title="empty list">
-        Empty
-      </button>
-      <button
-        className="watch-list-event"
-        title="sync date to google calender"
-        onClick={syncEvents}
-      >
-        Sync to Google Calender
-      </button>
-      <button className="watch-list-event" title="save list to local storage">
-        Download
-      </button>
-      <button>email</button>
-      <button>share</button>
+      <div className="list-container">
+        {showList.length > 0 ? (
+          <div className="list">
+            {showList.map((show, index) => (
+              <div key={show.showId + `${index}`} className="list__item">
+                <span className="list__item-name">
+                  <strong>{show[showName]}</strong>
+                </span>{" "}
+                <span className="list__item-date"> {show[nextEp]} </span>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <div className="watch-list-footer">
+        <button
+          className="watch-list-clear footer-buttons"
+          title="empty list"
+          onClick={() => listHandlers.empty(showList, setShowList)}
+          ref={(element) => {
+            myRef.current[0] = element;
+          }}
+          style={{ cursor: "not-allowed" }}
+        >
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <button
+          className="watch-list-event footer-buttons"
+          title="sync date to google calender"
+          onClick={() => syncEvents()}
+          ref={(element) => {
+            myRef.current[1] = element;
+          }}
+        >
+          <i class="far fa-calendar-alt"></i>
+        </button>
+        <button
+          className="watch-list-download footer-buttons"
+          title="save list to local storage"
+          // onClick={() => listHandlers.download(showList)}
+          ref={(element) => {
+            myRef.current[2] = element;
+          }}
+        >
+          <i class="fas fa-cloud-download-alt"></i>
+        </button>
+        <button
+          ref={(element) => {
+            myRef.current[3] = element;
+          }}
+          className="watch-list-tweet footer-buttons"
+        >
+          <a
+            // className="watch-list-twitter footer-buttons"
+            style={{ cursor: "inherit" }}
+            href={
+              showList.length > 0
+                ? "https://twitter.com/intent/tweet?hashtags=NanoTV&related=D_africanknight&text=" +
+                  encodeURIComponent(
+                    '"' +
+                      showList.map((val) => val.showName).join(", ") +
+                      '" ' +
+                      "my show list"
+                  )
+                : null
+            }
+            hashtags={"100daysOfCode"}
+            target="_blank"
+            rel="noreferrer"
+            title="Tweet Your Movie List"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+        </button>
+      </div>
     </div>
   );
 };

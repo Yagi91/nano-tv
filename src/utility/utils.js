@@ -95,4 +95,53 @@ export const handleList = (setDisplayList) => {
   setDisplayList((state) => !state);
 };
 
+export const listHandlers = {
+  download: (showList) => {
+    if (showList.length > 0) {
+      var FileSaver = require("file-saver");
+      var blob = new Blob(
+        [showList.map((val) => JSON.stringify(val)).join("\n")],
+        {
+          type: "text/plain;charset=utf-8",
+        }
+      );
+      FileSaver.saveAs(blob, "list of shows.txt");
+    }
+  },
+  empty: (showList, setShowList) => {
+    if (!showList.length > 0) {
+      return;
+    }
+    var all = document.getElementsByClassName("movie__follow");
+    for (let i = 0; i < all.length; i++) {
+      all[i].style.color = "white";
+    }
+    setShowList([]);
+  },
+};
+
+// export const download = (showList) => {
+//   if (showList.length > 0) {
+//     var FileSaver = require("file-saver");
+//     var blob = new Blob(
+//       [showList.map((val) => JSON.stringify(val)).join("\n")],
+//       {
+//         type: "text/plain;charset=utf-8",
+//       }
+//     );
+//     FileSaver.saveAs(blob, "list of shows.txt");
+//   }
+// };
+
+// export const empty = (showList, setShowList) => {
+//   if (!showList.length > 0) {
+//     return;
+//   }
+//   var all = document.getElementsByClassName("movie__follow");
+//   for (let i = 0; i < all.length; i++) {
+//     all[i].style.color = "white";
+//   }
+//   setShowList([]);
+// };
+
 export default listing;

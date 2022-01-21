@@ -10,10 +10,17 @@ import "../styles/main.css";
 import List from "./list";
 import MoviePage from "./movie-page";
 import CountrySelect from "./sidebar";
-import listing, { Submit, displayPage, handleList } from "../utility/utils";
+import { DateTime } from "luxon";
+import listing, {
+  Submit,
+  displayPage,
+  handleList,
+  listHandlers,
+} from "../utility/utils";
+const currentDate = DateTime.now().toISODate();
 
 const defaultUrl = {
-  today: `https://api.tvmaze.com/schedule/web?date=2021-12-05`, //endpoint shows for today dynamically updated
+  today: `https://api.tvmaze.com/schedule/web?date=${currentDate}`, //endpoint shows for today dynamically updated
   future: [
     //TV maze endpoint of both the local-schedule and web-schedule
     "http://api.tvmaze.com/schedule",
@@ -44,27 +51,57 @@ const Main = () => {
   const [displayList, setDisplayList] = useState(false);
 
   //control the header shrinking animation
+
   useEffect(() => {
-    const resizeHeaderOnScroll = () => {
-      const distanceY =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const shrinkOn = 200;
-      if (distanceY > shrinkOn) {
-        setShrink(true);
-      } else {
-        setShrink(false);
-      }
+    const handler = () => {
+      // Check and update component here.
+      setShrink((shrink) => {
+        if (
+          !shrink &&
+          (document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20)
+        ) {
+          return true;
+        }
+        if (
+          shrink &&
+          document.body.scrollTop < 4 &&
+          document.documentElement.scrollTop < 4
+        ) {
+          return false;
+        }
+        return shrink;
+      });
     };
-    window.addEventListener("scroll", resizeHeaderOnScroll);
-    return () => window.removeEventListener("scroll", resizeHeaderOnScroll);
-    // window.onscroll = () => {
-    //   if (window.pageYOffset > 40) {
-    //     setShrink(true);
-    //   } else {
-    //     setShrink(false);
-    //   }
-    // };
+
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  // useEffect(() => {
+  //   const resizeHeaderOnScroll = () => {
+  //     const distanceY =
+  //       window.pageYOffset || document.documentElement.scrollTop;
+  //     const shrinkOn = 200;
+  //     if (distanceY > shrinkOn) {
+  //       setShrink(true);
+  //     } else {
+  //       setShrink(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", resizeHeaderOnScroll);
+  //   return () => window.removeEventListener("scroll", resizeHeaderOnScroll);
+
+  ///normally commented out
+  // window.onscroll = () => {
+  //   if (window.pageYOffset > 40) {
+  //     setShrink(true);
+  //   } else {
+  //     setShrink(false);
+  //   }
+  // };
+  ///
+  // }, []);
 
   //movie page modal disable background-scrolling when active(true)
   // useEffect(() => {
@@ -89,7 +126,10 @@ const Main = () => {
             Following{" "}
             <i class="fas fa-clipboard-list" style={{ color: "#e7ff2c" }}></i>
           </div>
-          <div className="nav-bar__save">
+          <div
+            className="nav-bar__save"
+            onClick={() => listHandlers.download(list)}
+          >
             Save List{" "}
             <i
               class="fas fa-cloud-download-alt"
@@ -101,6 +141,7 @@ const Main = () => {
       <h1 className="section-title">Web/streaming schedule Airing Today</h1>
       <List
         showList={list}
+        setShowList={setList}
         showName={"showName"}
         nextEp={"nextEp"}
         displayList={displayList}

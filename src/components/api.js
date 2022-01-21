@@ -45,7 +45,7 @@ export function useFuture(url, url2, dependencies) {
   //Making To API calls
   //First API call is to get data from local shows, This endpoint will only return episodes that are tied to a specific country
   useEffect(() => {
-    setFuture([]); //clearing the setFuture state after each refresh because I concat the data with the previous state below
+    setFuture([]); //clear the setFuture state after each refresh because I concat the data with the previous state below
     async function getData() {
       try {
         const response = await fetch(url);
