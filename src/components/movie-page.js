@@ -1,4 +1,8 @@
-import React, { useEffect } from "react";
+//modal with a shows more info about a single show
+//Should pop up an make background clickable
+//used useFetch custom API
+
+import React from "react";
 import useFetch from "./api";
 import image from "../assets/not.PNG";
 import "../styles/moviepage.css";
@@ -14,7 +18,7 @@ const MoviePage = ({
   // const [name, setName] = useState(showName);
   let url = `https://api.tvmaze.com/shows/${id}`;
   const [show, loaded, error] = useFetch(url, searched, [url, searched]);
-
+  //set url to empty to clear search and unmount component
   const closePage = () => {
     url = "";
     setShowPage(false);
@@ -35,7 +39,7 @@ const MoviePage = ({
           </div>
           <div className="movie-page__content">
             <div onClick={closePage} className="movie-page-close">
-              <i class="fa fa-times"></i>
+              <i className="fa fa-times"></i>
             </div>
             <h1 className="movie-title">{showName}</h1>
             {loaded ? (
@@ -52,7 +56,7 @@ const MoviePage = ({
                 </div>
                 <div className="movie-page__rating">
                   {show.rating.average ? show.rating.average : "N/A"}{" "}
-                  <i class="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
                 </div>
                 <hr />
                 <div
@@ -72,7 +76,7 @@ const MoviePage = ({
                     >
                       <button>
                         <i
-                          class="fa fa-globe"
+                          className="fa fa-globe"
                           aria-hidden="true"
                           style={{ paddingRight: "15px" }}
                         ></i>
@@ -87,7 +91,7 @@ const MoviePage = ({
                     className="movie-page__follow"
                   >
                     <i
-                      class="fas fa-clipboard-list"
+                      className="fas fa-clipboard-list"
                       style={{ paddingRight: "15px" }}
                     ></i>
                     Follow

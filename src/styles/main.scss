@@ -20,6 +20,10 @@
   font-family: $primary-font;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
+  @media only screen and (max-width: 687px) {
+    // flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
   .nav-bar__logo {
     transition: all 0.3s;
     color: $secondary-color;
@@ -35,6 +39,10 @@
     display: flex;
     gap: 15px;
     align-items: center;
+    @media only screen and (max-width: 687px) {
+      flex-wrap: wrap-reverse;
+      justify-content: center;
+    }
   }
 }
 .nav-bar__save {
@@ -75,15 +83,6 @@
   gap: 10px;
   justify-content: center;
 }
-// .main-movies {
-//   justify-self: center;
-//   width: 90vw;
-//   margin: 2em auto;
-//   display: flex;
-//   gap: 10px;
-//   flex-wrap: wrap;
-//   justify-content: center;
-// }
 
 .premiered-header {
   background-color: $main-bg;

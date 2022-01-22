@@ -27,8 +27,8 @@ const CountrySelect = ({ selectRef, setFutureUrl }) => {
 
   return (
     <div className="sidebar">
-      <form class="sidebar__form">
-        <label for="country-select">Select Country: </label>
+      <form className="sidebar__form">
+        <label htmlFor="country-select">Select Country: </label>
         <select
           className="sidebar__form-country-select"
           id="country-select"

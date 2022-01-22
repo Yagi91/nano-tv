@@ -1,9 +1,15 @@
+//Should contain show the user decided to follow
+//Should slide from left into the page
+//used Google Calendar api to sync dates
+//use th download and empty functions from utils.js
+
+//warning: do not set the state with data from another state meant to be updated in a useEffect this lags behind.
+
 import React, { useEffect, useRef } from "react";
 import "../styles/list.css";
 import { handleList } from "../utility/utils";
 import { DateTime } from "luxon";
 import { listHandlers } from "../utility/utils";
-// import { download, empty } from "../utility/utils";
 
 const List = ({
   showList,
@@ -12,10 +18,11 @@ const List = ({
   nextEp,
   displayList,
   setDisplayList,
-  datedShows,
+  datedShows, //shows with an date on their nextEp property, warning don't change this to setting the components state in here to update with a useEffect hook it lags.
 }) => {
+  //Reference footer buttons
   const myRef = useRef([]);
-  console.log(myRef);
+  //Set contain button cursor to pointer or not allowed bases on the showList length property
   useEffect(() => {
     if (showList.length > 0) {
       myRef.current[0].style.cursor = "pointer";
@@ -25,7 +32,10 @@ const List = ({
     if (datedShows.length > 0) {
       myRef.current[1].style.cursor = "pointer";
     }
-  }, [[showList]]);
+  }, [showList.length, datedShows.length]);
+  //
+  //Google calendar api reference found on google calendarAPI docs and "https://youtu.be/zaRUq1siZZo"
+  //
 
   var gapi = window.gapi;
   //create google cloud project and get the API key and Client ID from the google console and enable the calendar API
@@ -47,7 +57,7 @@ const List = ({
       return;
     }
     gapi.load("client:auth2", () => {
-      console.log("loaded client");
+      // console.log("loaded client");
 
       gapi.client.init({
         apiKey: API_KEY,
@@ -61,7 +71,6 @@ const List = ({
         .signIn()
         .then(() => {
           var events = datedShows.map((val) => {
-            console.log(val.timeStamp);
             return {
               summary: `${val.showName}`,
               description: "Airing Next Episode of " + val.showName,
@@ -97,6 +106,7 @@ const List = ({
                 resource: events[j],
               })
             );
+            return null;
           });
           batch.execute(function (event) {
             let htmlLinks = Object.keys(event).map(
@@ -107,6 +117,8 @@ const List = ({
         });
     });
   };
+  //
+  //
 
   return (
     <div
@@ -128,11 +140,12 @@ const List = ({
           className="watch-list__button-close"
           title="close"
         >
-          <i class="fa fa-times"></i>
+          <i className="fa fa-times"></i>
         </button>
       </div>
       <div className="list__title">Show Name//Date of Next Episode</div>
       <div className="list-container">
+        {/* Unpack showList name property and date forming individual elements  */}
         {showList.length > 0 ? (
           <div className="list">
             {showList.map((show, index) => (
@@ -156,7 +169,7 @@ const List = ({
           }}
           style={{ cursor: "not-allowed" }}
         >
-          <i class="far fa-trash-alt"></i>
+          <i className="far fa-trash-alt"></i>
         </button>
         <button
           className="watch-list-event footer-buttons"
@@ -166,17 +179,17 @@ const List = ({
             myRef.current[1] = element;
           }}
         >
-          <i class="far fa-calendar-alt"></i>
+          <i className="far fa-calendar-alt"></i>
         </button>
         <button
           className="watch-list-download footer-buttons"
           title="save list to local storage"
-          // onClick={() => listHandlers.download(showList)}
+          onClick={() => listHandlers.download(showList)}
           ref={(element) => {
             myRef.current[2] = element;
           }}
         >
-          <i class="fas fa-cloud-download-alt"></i>
+          <i className="fas fa-cloud-download-alt"></i>
         </button>
         <button
           ref={(element) => {
@@ -184,26 +197,29 @@ const List = ({
           }}
           className="watch-list-tweet footer-buttons"
         >
+          {/* Twitter api call set JSON stringify each value of the showList array and join on a new line with a hashtag of NanoTV*/}
           <a
             // className="watch-list-twitter footer-buttons"
-            style={{ cursor: "inherit" }}
+            //set pointer-events to none to disable button if showList is empty, warning we must set html value to a valid html link soo the method of changing it can't be use here
+            style={{
+              cursor: "inherit",
+              pointerEvents: showList.length > 0 ? "auto" : "none",
+            }}
             href={
-              showList.length > 0
-                ? "https://twitter.com/intent/tweet?hashtags=NanoTV&related=D_africanknight&text=" +
-                  encodeURIComponent(
-                    '"' +
-                      showList.map((val) => val.showName).join(", ") +
-                      '" ' +
-                      "my show list"
-                  )
-                : null
+              "https://twitter.com/intent/tweet?hashtags=NanoTV&related=D_africanknight&text=" +
+              encodeURIComponent(
+                '"' +
+                  showList.map((val) => val.showName).join(", ") +
+                  '" ' +
+                  "my show list"
+              )
             }
             hashtags={"100daysOfCode"}
             target="_blank"
             rel="noreferrer"
             title="Tweet Your Movie List"
           >
-            <i class="fab fa-twitter"></i>
+            <i className="fab fa-twitter"></i>
           </a>
         </button>
       </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/search.css";
 
-//search of the today shows
+//search movie airing today show section
+//pass event through click to submit handler to prevent default page reload
 
 const Search = ({ submit }) => {
   return (
@@ -16,7 +17,7 @@ const Search = ({ submit }) => {
         aria-label="Search through site content"
         // autoFocus
         form="search"
-        enterKeyHint
+        enterKeyHint="true"
       />
       <button
         type="submit"

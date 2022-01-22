@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //Building get API for TV MAZE data
 
-//This first custom hook is to get data from normal search and highly changing data it's the API used in the section for airing Today
+//Custom hook is to get data from normal search and highly changing data it's the API used in the section for airing Today
 
 let checkFetch = (response) => {
   if (!response.ok) {
@@ -19,21 +19,22 @@ export default function useFetch(url, search, dependencies) {
       try {
         const response = await fetch(url);
         const data = await checkFetch(response).json();
-        console.log(data, response);
+        // console.log(data, response);
         search === false
           ? setData(data.map((datum) => datum["_embedded"]))
           : setData(data);
         setLoaded(true);
         setError(null);
       } catch (error) {
-        console.log(error);
         setError(error.message);
         setLoaded(false);
         console.log("error here: " + error);
       }
     }
     getData();
-  }, [url]);
+    //Make next API to be a new call, clearing the data in the previous component
+    return setLoaded(false);
+  }, [url, search]);
   return [data, loaded, error];
 }
 
@@ -42,8 +43,9 @@ export function useFuture(url, url2, dependencies) {
   const [future, setFuture] = useState([]);
   const [futureLoaded, setFutureLoaded] = useState(false);
   const [futureError, setFutureError] = useState(null);
-  //Making To API calls
+  //
   //First API call is to get data from local shows, This endpoint will only return episodes that are tied to a specific country
+  //
   useEffect(() => {
     setFuture([]); //clear the setFuture state after each refresh because I concat the data with the previous state below
     async function getData() {
@@ -103,6 +105,7 @@ export function useFuture(url, url2, dependencies) {
       }
     }
     getData();
+    setFutureLoaded(false);
   }, [url2]);
   return [future, futureLoaded, futureError];
 }

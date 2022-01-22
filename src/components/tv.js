@@ -1,4 +1,11 @@
+//Nano TV version(1.0.0)
 //integrates the main-page component, listing component, movie component,sort and search components.
+//Nano Tv app use google calendar, tv maze and twitter api(s) to function
+//loads the single home page
+//functions are functions and event handlers in the util.js module
+//luxon.js is a moment.js upgraded library
+//api function calls to the TV maze server found in the api.js
+//server.js used to download text files on client-site
 
 import React, { useState, useRef, useEffect } from "react";
 import MovieCard from "./movie";
@@ -115,7 +122,7 @@ const Main = () => {
         <div className="nav-bar__logo" to="/">
           Nano
           <br />
-          TV <i class="fas fa-television" style={{ color: "#fff" }}></i>
+          TV <i className="fas fa-television" style={{ color: "#fff" }}></i>
         </div>
         <div className="navbar-bar__content">
           <Search submit={(e) => Submit(e, setSearched, setUrl)} />
@@ -124,7 +131,10 @@ const Main = () => {
             onClick={() => handleList(setDisplayList)}
           >
             Following{" "}
-            <i class="fas fa-clipboard-list" style={{ color: "#e7ff2c" }}></i>
+            <i
+              className="fas fa-clipboard-list"
+              style={{ color: "#e7ff2c" }}
+            ></i>
           </div>
           <div
             className="nav-bar__save"
@@ -132,7 +142,7 @@ const Main = () => {
           >
             Save List{" "}
             <i
-              class="fas fa-cloud-download-alt"
+              className="fas fa-cloud-download-alt"
               style={{ color: "#e7ff2c" }}
             ></i>
           </div>
@@ -213,7 +223,7 @@ const Main = () => {
               <MovieCard
                 title={movie.show.name}
                 image={movie.show.image ? movie.show.image.original : image}
-                // image={movie.show.image.medium}
+                //larger images use image={movie.show.image.medium}
                 rating={
                   movie.show.rating.average ? movie.show.rating.average : "--"
                 }
@@ -229,8 +239,6 @@ const Main = () => {
                     : "No Available <strong>Summary</strong> at the Moment"
                 }
                 key={movie.show.name + index}
-                // style={subStyle}
-                // style={{ width: "4vw", float: "left", overflow: "hidden" }}
               />
             ) : (
               <div>

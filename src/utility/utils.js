@@ -34,9 +34,9 @@ const listing = (e, setList, list) => {
   axios
     .get(`https://api.tvmaze.com/shows/${showId}?embed=nextepisode`)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data._embedded) {
-        console.log("data is embedded");
+        // console.log("data is embedded");
         nextEp = DateTime.fromISO(
           //returns date object from the ISO string found as a Key-value of the nextExp in the Embedded property of the movie
           res.data["_embedded"].nextepisode.airstamp
@@ -51,7 +51,7 @@ const listing = (e, setList, list) => {
           });
           return newList;
         });
-        console.log("this is the list:h ", list);
+        // console.log("this is the list:h ", list);
       } else {
         setList((prevState) => {
           let newList = prevState.slice();
@@ -62,7 +62,7 @@ const listing = (e, setList, list) => {
           });
           return newList;
         });
-        console.log(list);
+        // console.log(list);
       }
     })
     .catch((err) => {
@@ -73,7 +73,7 @@ const listing = (e, setList, list) => {
 //submit a search query
 export const Submit = (e, setSearched, setUrl) => {
   setSearched(true); //this will make the data API know that it is a search query and hence the embedded property of the movie is not return
-  e.preventDefault();
+  e.preventDefault(); //prevent page reload
   let query = document.getElementById("search-bar").value;
   if (query.trim().length > 0) {
     //trim the empty spaces in from and behind the search term
@@ -95,11 +95,15 @@ export const handleList = (setDisplayList) => {
   setDisplayList((state) => !state);
 };
 
+//list.js footer button functions
 export const listHandlers = {
+  //Not to run function if showList is empty
   download: (showList) => {
     if (showList.length > 0) {
+      //Require file saver since (saveAs) it was not imported from the top
       var FileSaver = require("file-saver");
       var blob = new Blob(
+        //Movies display on each line containing all their properties, by stringified the objects of the array
         [showList.map((val) => JSON.stringify(val)).join("\n")],
         {
           type: "text/plain;charset=utf-8",
@@ -112,6 +116,7 @@ export const listHandlers = {
     if (!showList.length > 0) {
       return;
     }
+    //movie card follow button colors should all return to white before emptying the list
     var all = document.getElementsByClassName("movie__follow");
     for (let i = 0; i < all.length; i++) {
       all[i].style.color = "white";
@@ -119,29 +124,5 @@ export const listHandlers = {
     setShowList([]);
   },
 };
-
-// export const download = (showList) => {
-//   if (showList.length > 0) {
-//     var FileSaver = require("file-saver");
-//     var blob = new Blob(
-//       [showList.map((val) => JSON.stringify(val)).join("\n")],
-//       {
-//         type: "text/plain;charset=utf-8",
-//       }
-//     );
-//     FileSaver.saveAs(blob, "list of shows.txt");
-//   }
-// };
-
-// export const empty = (showList, setShowList) => {
-//   if (!showList.length > 0) {
-//     return;
-//   }
-//   var all = document.getElementsByClassName("movie__follow");
-//   for (let i = 0; i < all.length; i++) {
-//     all[i].style.color = "white";
-//   }
-//   setShowList([]);
-// };
 
 export default listing;

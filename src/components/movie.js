@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/movie.css";
 //contains all main information of any movie component on the pag with it's basic information with hover effect for summary
+//Card holds little important info about any movie
+//ideal width - 300px
 
 const MovieCard = ({
   title,
@@ -12,7 +14,7 @@ const MovieCard = ({
   status,
   summary,
   listing,
-  key,
+  // key,
   id,
   displayPage,
   style,
@@ -22,14 +24,12 @@ const MovieCard = ({
     setImage(image);
   }, [image]); //placing the default image on component mounted
   let fontSize = title.length < 21 ? "2em" : "1.em";
-  // const fontSize = (e) => {
-  //   alert(this.target.value);
-  //   let size = e.target.value.length;
-  //   return "2em";
-  // }; // ensures that the title should be able to be contained in the container
-  // console.log(title.length, fontSize);
   return (
-    <div className="movie-card" key={key} style={{ ...style }}>
+    <div
+      className="movie-card"
+      // key={key}
+      style={{ ...style }}
+    >
       <div
         className="movie-card__container-image"
         onClick={displayPage}
@@ -66,6 +66,7 @@ const MovieCard = ({
           <div>{status}</div>
           <div className="movie__info-type">Status</div>
         </div>
+        {/* Data attributes passed down to the listing function to distinguish each movie card */}
         <div
           className={`movie__follow ${title}`}
           onClick={listing}
