@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/nano-tv/static/css/main.0b765f11.chunk.css",
+    "main.js": "/nano-tv/static/js/main.9f92fed4.chunk.js",
+    "main.js.map": "/nano-tv/static/js/main.9f92fed4.chunk.js.map",
+    "runtime-main.js": "/nano-tv/static/js/runtime-main.061e854c.js",
+    "runtime-main.js.map": "/nano-tv/static/js/runtime-main.061e854c.js.map",
+    "static/js/2.73d60143.chunk.js": "/nano-tv/static/js/2.73d60143.chunk.js",
+    "static/js/2.73d60143.chunk.js.map": "/nano-tv/static/js/2.73d60143.chunk.js.map",
+    "index.html": "/nano-tv/index.html",
+    "static/css/main.0b765f11.chunk.css.map": "/nano-tv/static/css/main.0b765f11.chunk.css.map",
+    "static/js/2.73d60143.chunk.js.LICENSE.txt": "/nano-tv/static/js/2.73d60143.chunk.js.LICENSE.txt",
+    "static/media/not.b55c1fbd.PNG": "/nano-tv/static/media/not.b55c1fbd.PNG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.061e854c.js",
+    "static/js/2.73d60143.chunk.js",
+    "static/css/main.0b765f11.chunk.css",
+    "static/js/main.9f92fed4.chunk.js"
+  ]
+}
